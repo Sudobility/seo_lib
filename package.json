@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/seo_lib",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "SEO and AEO components and utilities for React applications",
   "type": "module",
   "main": "./dist/index.js",
