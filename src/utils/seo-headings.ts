@@ -17,12 +17,7 @@ export interface HeadingConfig {
   className?: string;
   id?: string;
   semanticContext?:
-    | 'page-title'
-    | 'section'
-    | 'subsection'
-    | 'feature'
-    | 'benefit'
-    | 'step';
+    'page-title' | 'section' | 'subsection' | 'feature' | 'benefit' | 'step';
 }
 
 /**
