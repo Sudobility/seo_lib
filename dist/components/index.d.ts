@@ -1,9 +1,9 @@
 /**
  * SEO Components
  */
-export { SEO, type SEOProps, type SEOConfig } from './SEO';
-export { SEOHead, type SEOHeadProps } from './SEOHead';
-export { SEOHeadProvider, useSEOHeadConfig, type SEOHeadConfig, } from './SEOHeadContext';
-export { AIMeta, type AIMetaProps } from './AIMeta';
-export * from './SemanticHTML';
-export { AITrainingEnhancer } from './AITrainingEnhancer';
+export { SEO, type SEOProps, type SEOConfig } from './SEO.js';
+export { SEOHead, type SEOHeadProps } from './SEOHead.js';
+export { SEOHeadProvider, useSEOHeadConfig, type SEOHeadConfig, } from './SEOHeadContext.js';
+export { AIMeta, type AIMetaProps } from './AIMeta.js';
+export * from './SemanticHTML.js';
+export { AITrainingEnhancer } from './AITrainingEnhancer.js';
