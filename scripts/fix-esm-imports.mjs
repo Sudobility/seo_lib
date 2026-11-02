@@ -21,6 +21,12 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import process from 'node:process';
+
+// Imported explicitly (rather than relying on globals) so this build script
+// lints cleanly under every repo's ESLint config without needing a directive.
+const out = (msg) => process.stdout.write(`${msg}\n`);
+const warn = (msg) => process.stderr.write(`${msg}\n`);
 
 // Output directory: an explicit argument wins, otherwise `dist` under the
 // current working directory (where `bun run build` runs), falling back to the
@@ -32,7 +38,7 @@ const distDir = process.argv[2]
     : resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
 if (!existsSync(distDir)) {
-  console.error(`[fix-esm-imports] dist directory not found: ${distDir}`);
+  warn(`[fix-esm-imports] dist directory not found: ${distDir}`);
   process.exit(1);
 }
 
@@ -130,7 +136,7 @@ for (const file of collect(distDir)) {
   }
 }
 
-console.log(
+out(
   `[fix-esm-imports] rewrote ${specifiersRewritten} specifier(s) across ${filesChanged} file(s) in ${distDir}`,
 );
 
@@ -138,6 +144,6 @@ console.log(
 // they are dynamic imports, platform-conditional files, or doc-comment examples
 // that this rewrite deliberately leaves alone.
 if (unresolved.length > 0) {
-  console.warn(`[fix-esm-imports] ${unresolved.length} specifier(s) left as-is (could not resolve):`);
-  for (const u of unresolved) console.warn(`  - ${u}`);
+  warn(`[fix-esm-imports] ${unresolved.length} specifier(s) left as-is (could not resolve):`);
+  for (const u of unresolved) warn(`  - ${u}`);
 }
